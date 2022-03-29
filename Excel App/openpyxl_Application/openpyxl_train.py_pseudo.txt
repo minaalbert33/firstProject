@@ -1,0 +1,63 @@
+importing openpyxl module
+
+1- define a function to represent choice number 1 with name(choice1) for the user:
+    try:
+        country = input('enter name of country')
+        workbook = openpyxl.load_workbook(country.xlsx)
+        sheet1 = wb['Sheet1']
+    except:
+        print('this country is not available')
+    else:
+        break
+
+2- define a function to represent choice number 2 with name(choice2):
+    cols2 = list(sheet1.iter_cols())
+    dictionary = dict(zip(cols2[0], cols2[1]))
+    print('here is every state and its population')
+    total_pop = 0
+    for country, pop in dictionary.items():
+        print(country --> pop)
+        total_pop += pop
+    print('here is the total population -->' total_pop)
+
+3- define a function to represent choice number 3 with name(choice3):
+    cols2 = list(sheet1.iter_cols())
+    dictionary = dict(zip(cols2[0], cols2[1]))
+    heighest_state = max(zip(dictionary.keys(), dictionary.values()))
+    lowest_state = min(zip(dictionary.keys(), dictionary.values()))
+
+4- define a function that represent tha main app:
+    print('Press 1 if you want to load the file of the country')
+    print('Press 4 if you want to exit from the program.')
+    print('Canada, Egypt, USA are avalabile.')
+
+    while true:
+        try:
+            user_input = input('please, enter number 1 or 4)
+        except:
+            print('invalid number')
+            continue
+        if user_input != 1 and user_input != 4:
+            print('invalid number') 
+        else:
+            if user_input == 1:
+                call choice1()
+            else:
+                exit()
+
+    print('Now you have two choices, 2 or 3.')
+    print('Press 2, if you want to see every state and its population and the total population.')
+    print('Press 3, if you want to see the state with the highest population or the state with the lowest one.')
+    while true:
+        try:
+            user_input = input('Great!, Now you should enter 2 or 3:')
+        except:
+            print('invalid number')
+            continue
+        if user_input == 3:
+            call choice3()
+            exit()
+        else:
+            call choice2()
+            exit()
+5- call main app function.
